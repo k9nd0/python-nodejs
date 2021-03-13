@@ -1,4 +1,4 @@
-# python-38-nodejs-14
+# python-nodejs
 
 ```bash
 oc start-build python-nodejs

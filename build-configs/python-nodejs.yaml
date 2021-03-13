@@ -24,7 +24,7 @@ items:
         type: Git
         git:
           uri: https://github.com/k9nd0/python-nodejs.git
-          ref: main
+          ref: master
       strategy:
         type: Docker
         dockerStrategy:
