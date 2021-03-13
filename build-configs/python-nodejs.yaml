@@ -1,0 +1,37 @@
+kind: List
+apiVersion: v1
+items:
+  - kind: ImageStream
+    apiVersion: image.openshift.io/v1
+    metadata:
+      name: python-nodejs
+      labels:
+        build: python-nodejs
+    spec:
+      lookupPolicy:
+        local: true
+  - kind: BuildConfig
+    apiVersion: build.openshift.io/v1
+    metadata:
+      name: python-nodejs
+      labels:
+        build: python-nodejs
+    spec:
+      triggers:
+        - type: ConfigChange
+        - type: ImageChange
+      source:
+        type: Git
+        git:
+          uri: https://github.com/k9nd0/python-nodejs.git
+          ref: main
+      strategy:
+        type: Docker
+        dockerStrategy:
+            kind: ImageStreamTag
+            name: python:3.6-ubi8
+            namespace: openshift
+      output:
+        to:
+          kind: ImageStreamTag
+          name: python-nodejs:latest
