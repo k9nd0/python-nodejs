@@ -2,7 +2,9 @@ FROM image-registry.openshift-image-registry.svc:5000/openshift/python:3.8-ubi8
 
 USER root
 
-COPY . /tmp/src
+RUN ls -l; pwd;
+
+COPY /tmp/src /tmp/src
 
 RUN dnf install -y /tmp/src/packages/libicu-60.3-2.el8_1.x86_64.rpm /tmp/src/packages/postgresql-12.5-1.module+el8.3.0+9042+664538f4.x86_64.rpm
 
