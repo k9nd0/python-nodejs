@@ -1,10 +1,10 @@
-FROM image-registry.openshift-image-registry.svc:5000/openshift/postgresql:12 AS postgresql
-
 FROM image-registry.openshift-image-registry.svc:5000/openshift/python:3.8-ubi8
 
 USER root
 
-RUN dnf install -y packages/libicu-60.3-2.el8_1.x86_64.rpm packages/postgresql-12.5-1.module+el8.3.0+9042+664538f4.x86_64.rpm
+COPY . /tmp/src
+
+RUN dnf install -y /tmp/src/packages/libicu-60.3-2.el8_1.x86_64.rpm /tmp/src/packages/postgresql-12.5-1.module+el8.3.0+9042+664538f4.x86_64.rpm
 
 RUN dnf module reset -y nodejs && \
     dnf module enable -y nodejs:14 && \
