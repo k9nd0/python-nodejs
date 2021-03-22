@@ -2,9 +2,7 @@ FROM image-registry.openshift-image-registry.svc:5000/openshift/python:3.8-ubi8
 
 USER root
 
-RUN ls -l; pwd;
-
-COPY . /tmp/src
+COPY .. /tmp/src
 
 RUN ls -l /tmp/src
 
