@@ -4,7 +4,9 @@ USER root
 
 RUN ls -l; pwd;
 
-COPY /tmp/src /tmp/src
+COPY . /tmp/src
+
+RUN ls -l /tmp/src
 
 RUN dnf install -y /tmp/src/packages/libicu-60.3-2.el8_1.x86_64.rpm /tmp/src/packages/postgresql-12.5-1.module+el8.3.0+9042+664538f4.x86_64.rpm
 
