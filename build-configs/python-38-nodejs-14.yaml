@@ -1,0 +1,38 @@
+kind: List
+apiVersion: v1
+items:
+  - kind: ImageStream
+    apiVersion: image.openshift.io/v1
+    metadata:
+      name: python-38-nodejs-14
+      labels:
+        build: python-38-nodejs-14
+    spec:
+      lookupPolicy:
+        local: true
+  - kind: BuildConfig
+    apiVersion: build.openshift.io/v1
+    metadata:
+      name: python-38-nodejs-14
+      labels:
+        build: python-38-nodejs-14
+    spec:
+      triggers:
+        - type: ConfigChange
+        - type: ImageChange
+      source:
+        type: Git
+        git:
+          uri: https://github.com/k9nd0/python-nodejs.git
+          ref: master
+        contextDir: python-38-nodejs-14
+      strategy:
+        type: Docker
+        dockerStrategy:
+            kind: ImageStreamTag
+            name: python:3.6-ubi8
+            namespace: openshift
+      output:
+        to:
+          kind: ImageStreamTag
+          name: python-38-nodejs-14:latest

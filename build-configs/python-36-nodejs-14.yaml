@@ -4,18 +4,18 @@ items:
   - kind: ImageStream
     apiVersion: image.openshift.io/v1
     metadata:
-      name: python-nodejs
+      name: python-36-nodejs-14
       labels:
-        build: python-nodejs
+        build: python-36-nodejs-14
     spec:
       lookupPolicy:
         local: true
   - kind: BuildConfig
     apiVersion: build.openshift.io/v1
     metadata:
-      name: python-nodejs
+      name: python-36-nodejs-14
       labels:
-        build: python-nodejs
+        build: python-36-nodejs-14
     spec:
       triggers:
         - type: ConfigChange
@@ -25,6 +25,7 @@ items:
         git:
           uri: https://github.com/k9nd0/python-nodejs.git
           ref: master
+        contextDir: python-36-nodejs-14
       strategy:
         type: Docker
         dockerStrategy:
@@ -34,4 +35,4 @@ items:
       output:
         to:
           kind: ImageStreamTag
-          name: python-nodejs:latest
+          name: python-36-nodejs-14:latest
